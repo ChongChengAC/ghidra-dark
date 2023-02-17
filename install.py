@@ -49,13 +49,13 @@ def get_ghidra_install_path(install_path: str = None) -> str:
     ghidra_run_path = shutil.which("ghidraRun")
     
     if not ghidra_run_path:
-    # Arch package uses a symlink in `/usr/bin/ghidra` to ghidraRun
-    ghidra_symlink_path = shutil.which("ghidra")
-    if os.path.islink(ghidra_symlink_path):
-        try:
-            ghidra_run_path = os.readlink(ghidra_symlink_path)
-        except:
-            ghidra_run_path = None
+        # Arch package uses a symlink in `/usr/bin/ghidra` to ghidraRun
+        ghidra_symlink_path = shutil.which("ghidra")
+        if os.path.islink(ghidra_symlink_path):
+            try:
+                ghidra_run_path = os.readlink(ghidra_symlink_path)
+            except:
+                ghidra_run_path = None
                 
     if not ghidra_run_path:
         return None
